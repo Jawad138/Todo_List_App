@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant To-Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List App</h1>
+        <form action="{{ url_for('add') }}" method="post" id="add-form">
+            <input type="text" name="task" placeholder="What needs to be done?" required>
+            <button type="submit"><i class="fas fa-plus"></i></button>
+        </form>
+        <ul id="task-list">
+            {% for task in tasks %}
+            <li {% if task.done %}class="done"{% endif %}>
+                <span class="task-content" onclick="toggleTask({{ loop.index0 }})">
+                    <i class="far {% if task.done %}fa-check-square{% else %}fa-square{% endif %}"></i>
+                    {{ task.content }}
+                </span>
+                <div class="task-actions">
+                    <button onclick="editTask({{ loop.index0 }})" class="edit"><i class="fas fa-pencil-alt"></i></button>
+                    <button onclick="deleteTask({{ loop.index0 }})" class="delete"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
