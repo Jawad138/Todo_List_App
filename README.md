@@ -8,8 +8,11 @@ A simple web-based application designed to help users efficiently manage their t
 Features:
 
 Task Creation: Easily add new tasks to the list.
+
 Task Completion: Mark tasks as completed to track progress.
+
 Task Editing: Modify existing task details.
+
 Task Deletion: Remove unwanted tasks from the list.
 
 
